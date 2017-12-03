@@ -1,0 +1,30 @@
+{
+  "name": "worldcup2018",
+  "version": "1.0.0",
+  "description": "World Cup 2018 brings to you the latest new about World Cup 2018 - Russia.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jacktamas/WorldCup-2018.git"
+  },
+  "author": "Jack Tamas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jacktamas/WorldCup-2018/issues"
+  },
+  "homepage": "https://github.com/Jacktamas/WorldCup-2018#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "mocha": "^4.0.1",
+    "mongojs": "^2.4.1",
+    "nightmare": "^2.10.0",
+    "request": "^2.83.0"
+  }
+}
