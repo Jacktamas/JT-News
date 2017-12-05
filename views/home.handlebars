@@ -1,1 +1,19 @@
-<h1>Hello This is HandleBars</h1>
+<div class="row">
+  {{#each articles}}
+  <a class="col-xs-12 col-sm-6 col-md-6 col-lg-4" href="{{link}}">
+    <div class="cardsContainer">
+      <div class="card">
+        <div class="row">
+          <div class="imgCard col-xs-5 col-md-4">
+            <img class="img" src="{{imgSrc}}" alt="{{title}}" >
+          </div>
+          <div class="col-xs-7 col-md-8 fitText">
+            <h4 class="article-title">{{title}}</h4>
+            <p class="content">{{content}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+  {{/each}}
+</div>

@@ -2,8 +2,21 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>World Cup 2018 News</title>
+  <!-- Set the viewport so this responsive site displays correctly on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Favicon -->
+  <link href="../../assets/images/logo.png" rel="icon" type="image/x-icon" />
+
+  <meta property="og:image" content="../../assets/images/logo.png">
+  <meta property="og:title" content="JT News">
+  <meta property="og:description" content="Welcome to JT News the best app brings you the latest news about politics, food, tech, world ...etc">
+  <title>JT News</title>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-h21C2fcDk/eFsW9sC9h0dhokq5pDinLNklTKoxIZRUn3+hvmgQSffLLQ4G4l2eEr" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Faster+One|Modak|Monoton" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
   <nav class="navbar navbar-default">
@@ -15,40 +28,34 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Brand</a>
+        <a class="navbar-brand" href="/"><span class="JT">JT</span><span class="NEWS">NEWS</span></a>
       </div>
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-          <li><a href="#">Link</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li class="divider"></li>
-              <li><a href="#">Separated link</a></li>
-              <li class="divider"></li>
-              <li><a href="#">One more separated link</a></li>
-            </ul>
-          </li>
-        </ul>
-        <form class="navbar-form navbar-left" role="search">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
-          </div>
-          <button type="submit" class="btn btn-default">Submit</button>
-        </form>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Link</a></li>
+          <li><a href="/entertainment">Entertainment</a></li>
+          <li><a href="/food">Food</a></li>
+          <li><a href="/health">Health</a></li>
+          <li><a href="/politics">Politics</a></li>
+          <li><a href="/science">Science</a></li>
+          <li><a href="/technology">Technology</a></li>
+          <li><a href="/world">World</a></li>
         </ul>
       </div>
     </div>
   </nav>
+  <div class="news-feed">
+    <marquee behavior="scroll" direction="left">{{#each articles}}<a href="{{link}}" class="noDefault">{{title}}....</a>{{/each}}</marquee>
+  </div>
 
-  {{{body}}}
+  <div class="container-fluid">
+    {{{body}}}
+    <div class="emptyDiv">
 
+    </div>
+  </div>
+  <footer class="footer navbar-fixed text-center">
+    <span class="white small">&copy; <a class="noDefault" href="/" style="font-size: 0.5em;"><span class="JT">JT</span><span class="NEWS">NEWS</span></a> 2017</span>
+  </footer>
 </body>
 </html>
