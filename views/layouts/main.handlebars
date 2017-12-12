@@ -40,12 +40,20 @@
           <li><a href="/science">Science</a></li>
           <li><a href="/technology">Technology</a></li>
           <li><a href="/world">World</a></li>
+          <li><a href="/trending"><span class="red shadow">Trending News</span></a></li>
         </ul>
       </div>
     </div>
   </nav>
   <div class="news-feed">
-    <marquee behavior="scroll" direction="left">{{#each articles}}<a href="{{link}}" class="noDefault">{{title}}....</a>{{/each}}</marquee>
+  <marquee behavior="scroll" direction="left">
+    {{#if articles}}
+    {{#each articles}}<a href="{{link}}" class="noDefault">{{title}}....</a>
+    {{/each}}</marquee>
+    {{else}}
+    {{#each dbArticles}}<a href="{{link}}" class="noDefault">{{title}}....</a>
+    {{/each}}</marquee>
+    {{/if}}
   </div>
 
   <div class="container-fluid">
@@ -57,5 +65,6 @@
   <footer class="footer navbar-fixed text-center">
     <span class="white small">&copy; <a class="noDefault" href="/" style="font-size: 0.5em;"><span class="JT">JT</span><span class="NEWS">NEWS</span></a> 2017</span>
   </footer>
+  <script src="./assets/js/app.js" charset="utf-8"></script>
 </body>
 </html>

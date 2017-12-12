@@ -20,4 +20,7 @@ module.exports = function(app){
 
   app.get('/world', htmlController.world);
 
+  app.get('/trending', htmlController.trending);
+
+  app.post('/addComment', htmlController.addComment)
 }

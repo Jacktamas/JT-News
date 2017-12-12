@@ -1,22 +1,24 @@
-const express = require("express");
+// const express = require("express");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
+const express = require("express");
 const app = express();
-const mongojs = require('mongojs');
+const mongoose = require('mongoose');
+const logger = require("morgan");
 const PORT = process.env.PORT || 8080;
 const request = require('request');
+// const db = require("./models");
 
-var databaseUrl = "newsdb";
-var collections = ["articles"];
-const db = mongojs(databaseUrl, collections);
-
-db.on('error', function (err) {
-    console.log('database error', err)
-})
-
-db.on('connect', function () {
-    console.log('database connected')
-})
+mongoose.Promise = Promise;
+mongoose.connect("mongodb://localhost/articlesdb", {
+  useMongoClient: true
+});
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  // we're connected!
+  console.log(' we\'re connected!')
+});
 
 app.set("view engine", "handlebars");
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
@@ -25,15 +27,8 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//CORS
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
-
 // Routes
-// require("./routes/apiRoutes.js")(app);
+require("./routes/apiRoutes.js")(app);
 require("./routes/htmlRoutes.js")(app);
 
 app.listen(PORT, () => {

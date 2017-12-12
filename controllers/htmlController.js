@@ -1,5 +1,7 @@
 const request = require('request');
 const cheerio = require('cheerio');
+const db = require("../models");
+const os = require('os');
 
 module.exports = {
   home: function(req, res){
@@ -13,7 +15,7 @@ module.exports = {
         var imgSrc = $(element).children('div.m').children().children().children('img').data('src');
         var link = $(element).children('div.m').children('a').attr('href');
         if(title && imgSrc && link){
-          if(link.charAt(0) === '/'){
+          if(link === undefined || link.charAt(0) === '/'){
             link = "http://www.foxnews.com"+link
           }
           articles.push({
@@ -29,7 +31,7 @@ module.exports = {
         var imgSrc = $(element).children('div.m').children().children().children('img').data('src');
         var link = $(element).children('div.m').children('a').attr('href');
         if(title && imgSrc && link){
-          if(link.charAt(0) === '/'){
+          if(link === undefined || link.charAt(0) === '/'){
             link = "http://www.foxnews.com"+link
           }
           articles.push({
@@ -39,7 +41,13 @@ module.exports = {
           });
         }
       });
-      res.render('home', {articles: articles});
+      db.Article.find()
+      .then(function(dbArticles){
+        res.render('home', {
+          articles: articles,
+          dbArticles: dbArticles
+        });
+      })
     })
   },
   entertainment: function(req, res){
@@ -48,7 +56,7 @@ module.exports = {
       var $ = cheerio.load(html);
       var articles = [];
 
-      $('main.main-content div.collection-article-list div.article-list article').map(function(i, element){
+      $('div.collection-article-list div.article-list article').map(function(i, element){
         // console.log($(element).children('div.m').children('a').attr('href'), '===========', i)
         var title = $(element).children('div.info').children().children('h2').text();
         var imgSrc = $(element).children('div.m').children().children('a img').attr('src');
@@ -56,7 +64,7 @@ module.exports = {
         var content = $(element).children('div.info').children('div.content').children().children('p a').text().substring(0,140);
 
         if(title && imgSrc && link || content){
-          if(link.charAt(0) === '/'){
+          if(link === undefined || link.charAt(0) === '/' ){
             link = "http://www.foxnews.com"+link
           }
           articles.push({
@@ -67,15 +75,14 @@ module.exports = {
           });
         }
       });
-      $('main.main-content div.collection-article-list ul.article-list article').map(function(i, element){
+      $('div.collection-article-list ul.article-list article').map(function(i, element){
         // console.log($(element).children('div.m').children('a').attr('href'), '===========', i)
         var title = $(element).children('div.info').children().children('h2').text();
         var imgSrc = $(element).children('div.m').children().children('a img').attr('src');
         var link = $(element).children('div.m').children('a').attr('href');
         var content = $(element).children('div.info').children('div.content').children().children('p a').text().substring(0,140);
-
         if(title && imgSrc && link || content){
-          if(link.charAt(0) === '/'){
+          if(link === undefined || link.charAt(0) === '/'){
             link = "http://www.foxnews.com"+link
           }
           articles.push({
@@ -96,13 +103,12 @@ module.exports = {
       var articles = [];
 
       $('main.main-content div.collection-article-list ul.article-list article').map(function(i, element){
-        // console.log($(element).children('div.m').children('a').attr('href'), '===========', i)
         var title = $(element).children('div.info').children().children('h2').text();
         var imgSrc = $(element).children('div.m').children().children('a img').attr('src');
         var link = $(element).children('div.m').children('a').attr('href');
         var content = $(element).children('div.info').children('div.content').children().children('p a').text().substring(0,140);
         if(title && imgSrc && link){
-          if(link.charAt(0) === '/'){
+          if(link === undefined || link.charAt(0) === '/'){
             link = "http://www.foxnews.com"+link
           }
           articles.push({
@@ -120,7 +126,7 @@ module.exports = {
         var link = $(element).children('div.m').children('a').attr('href');
         var content = $(element).children('div.info').children('div.content').children().children('p a').text().substring(0,140);
         if(title && imgSrc && link){
-          if(link.charAt(0) === '/'){
+          if(link === undefined || link.charAt(0) === '/'){
             link = "http://www.foxnews.com"+link
           }
           articles.push({
@@ -147,7 +153,7 @@ module.exports = {
         var link = $(element).children('div.m').children('a').attr('href');
         var content = $(element).children('div.info').children('div.content').children().children('p a').text().substring(0,140);
         if(title && imgSrc && link){
-          if(link.charAt(0) === '/'){
+          if(link === undefined || link.charAt(0) === '/'){
             link = "http://www.foxnews.com"+link
           }
           articles.push({
@@ -165,7 +171,7 @@ module.exports = {
         var link = $(element).children('div.m').children('a').attr('href');
         var content = $(element).children('div.info').children('div.content').children().children('p a').text().substring(0,140);
         if(title && imgSrc && link){
-          if(link.charAt(0) === '/'){
+          if(link === undefined || link.charAt(0) === '/'){
             link = "http://www.foxnews.com"+link
           }
           articles.push({
@@ -192,7 +198,7 @@ module.exports = {
         var link = $(element).children('div.m').children('a').attr('href');
         var content = $(element).children('div.info').children('div.content').children().children('p a').text().substring(0,140);
         if(title && imgSrc && link){
-          if(link.charAt(0) === '/'){
+          if(link === undefined || link.charAt(0) === '/'){
             link = "http://www.foxnews.com"+link
           }
           articles.push({
@@ -210,7 +216,7 @@ module.exports = {
         var link = $(element).children('div.m').children('a').attr('href');
         var content = $(element).children('div.info').children('div.content').children().children('p a').text().substring(0,140);
         if(title && imgSrc && link){
-          if(link.charAt(0) === '/'){
+          if(link === undefined || link.charAt(0) === '/'){
             link = "http://www.foxnews.com"+link
           }
           articles.push({
@@ -237,7 +243,7 @@ module.exports = {
         var link = $(element).children('div.m').children('a').attr('href');
         var content = $(element).children('div.info').children('div.content').children().children('p a').text().substring(0,140);
         if(title && imgSrc && link){
-          if(link.charAt(0) === '/'){
+          if(link === undefined || link.charAt(0) === '/'){
             link = "http://www.foxnews.com"+link
           }
           articles.push({
@@ -255,7 +261,7 @@ module.exports = {
         var link = $(element).children('div.m').children('a').attr('href');
         var content = $(element).children('div.info').children('div.content').children().children('p a').text().substring(0,140);
         if(title && imgSrc && link){
-          if(link.charAt(0) === '/'){
+          if(link === undefined || link.charAt(0) === '/'){
             link = "http://www.foxnews.com"+link
           }
           articles.push({
@@ -282,7 +288,7 @@ module.exports = {
         var link = $(element).children('div.m').children('a').attr('href');
         var content = $(element).children('div.info').children('div.content').children().children('p a').text().substring(0,140);
         if(title && imgSrc && link){
-          if(link.charAt(0) === '/'){
+          if(link === undefined || link.charAt(0) === '/'){
             link = "http://www.foxnews.com"+link
           }
           articles.push({
@@ -300,7 +306,7 @@ module.exports = {
         var link = $(element).children('div.m').children('a').attr('href');
         var content = $(element).children('div.info').children('div.content').children().children('p a').text().substring(0,140);
         if(title && imgSrc && link){
-          if(link.charAt(0) === '/'){
+          if(link === undefined || link.charAt(0) === '/'){
             link = "http://www.foxnews.com"+link
           }
           articles.push({
@@ -327,7 +333,7 @@ module.exports = {
         var link = $(element).children('div.m').children('a').attr('href');
         var content = $(element).children('div.info').children('div.content').children().children('p a').text().substring(0,140);
         if(title && imgSrc && link){
-          if(link.charAt(0) === '/'){
+          if(link === undefined || link.charAt(0) === '/'){
             link = "http://www.foxnews.com"+link
           }
           articles.push({
@@ -345,7 +351,7 @@ module.exports = {
         var link = $(element).children('div.m').children('a').attr('href');
         var content = $(element).children('div.info').children('div.content').children().children('p a').text().substring(0,140);
         if(title && imgSrc && link){
-          if(link.charAt(0) === '/'){
+          if(link === undefined || link.charAt(0) === '/'){
             link = "http://www.foxnews.com"+link
           }
           articles.push({
@@ -358,6 +364,23 @@ module.exports = {
       });
 
       res.render('home', {articles: articles});
+    })
+  },
+  trending: function(req, res){
+    db.Article.find()
+    .then(function(dbArticles){
+      res.render('partials/trending', {
+        dbArticles: dbArticles
+      })
+    });
+  },
+  addComment: function(req, res) {
+    db.Article.update({_id: req.body.id}, {$push: {comments: req.body}})
+    .then(results => {
+      res.render('partials/comment', {
+        comment: req.body,
+        layout: false
+      })
     })
   }
 

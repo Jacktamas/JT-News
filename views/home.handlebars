@@ -1,6 +1,6 @@
-<div class="row">
-  {{#each articles}}
-  <a class="col-xs-12 col-sm-6 col-md-6 col-lg-4" href="{{link}}">
+{{#each articles}}
+<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+  <a href="{{link}}">
     <div class="cardsContainer">
       <div class="card">
         <div class="row">
@@ -15,5 +15,15 @@
       </div>
     </div>
   </a>
-  {{/each}}
+  <div class="text-center col-xs-12">
+    <div class="form-inline" role="form">
+      <form class="form-group trendingForm">
+        <input class="form-control user" type="text" placeholder="Your Name ..." required/>
+        <input class="form-control commentInput" type="text" placeholder="Your comment ..." required/>
+        <button type="submit" class="btn-xs btn-default addComment" data-title="{{title}}" data-imgsrc="{{imgSrc}}" data-link="{{link}}">Add</button>
+        <div class="help-block"></div>
+      </form>
+    </div>
+  </div>
 </div>
+{{/each}}
