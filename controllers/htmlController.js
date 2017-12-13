@@ -93,7 +93,12 @@ module.exports = {
           });
         }
       });
-      res.render('home', {articles: articles});
+      res.render('home', {
+        articles: articles,
+        active: {
+          entertainment: true
+        }
+      });
     })
   },
   politics: function(req, res){
@@ -137,7 +142,12 @@ module.exports = {
           });
         }
       });
-      res.render('home', {articles: articles});
+      res.render('home', {
+        articles: articles,
+        active: {
+          politics: true
+        }
+      });
     })
   },
   food: function(req, res){
@@ -182,7 +192,12 @@ module.exports = {
           });
         }
       });
-      res.render('home', {articles: articles});
+      res.render('home', {
+        articles: articles,
+        active: {
+          food: true
+        }
+      });
     })
   },
   technology: function(req, res){
@@ -227,7 +242,12 @@ module.exports = {
           });
         }
       });
-      res.render('home', {articles: articles});
+      res.render('home', {
+        articles: articles,
+        active: {
+          technology: true
+        }
+      });
     })
   },
   world: function(req, res){
@@ -272,7 +292,12 @@ module.exports = {
           });
         }
       });
-      res.render('home', {articles: articles});
+      res.render('home', {
+        articles: articles,
+        active: {
+          world: true
+        }
+      });
     })
   },
   science: function(req, res){
@@ -317,7 +342,12 @@ module.exports = {
           });
         }
       });
-      res.render('home', {articles: articles});
+      res.render('home', {
+        articles: articles,
+        active: {
+          science: true
+        }
+      });
     })
   },
   health: function(req, res){
@@ -363,14 +393,22 @@ module.exports = {
         }
       });
 
-      res.render('home', {articles: articles});
+      res.render('home', {
+        articles: articles,
+        active: {
+          health: true
+        }
+      });
     })
   },
   trending: function(req, res){
     db.Article.find()
     .then(function(dbArticles){
       res.render('partials/trending', {
-        dbArticles: dbArticles
+        dbArticles: dbArticles,
+        active: {
+          trending: true
+        }
       })
     });
   },

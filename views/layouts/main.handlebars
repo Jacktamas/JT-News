@@ -33,14 +33,14 @@
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="/entertainment">Entertainment</a></li>
-          <li><a href="/food">Food</a></li>
-          <li><a href="/health">Health</a></li>
-          <li><a href="/politics">Politics</a></li>
-          <li><a href="/science">Science</a></li>
-          <li><a href="/technology">Technology</a></li>
-          <li><a href="/world">World</a></li>
-          <li><a href="/trending"><span class="red shadow">Trending News</span></a></li>
+          <li class="{{#if active.entertainment}}active{{/if}}"><a href="/entertainment">Entertainment</a></li>
+          <li class="{{#if active.food}}active{{/if}}"><a href="/food">Food</a></li>
+          <li class="{{#if active.health}}active{{/if}}"><a href="/health">Health</a></li>
+          <li class="{{#if active.politics}}active{{/if}}"><a href="/politics">Politics</a></li>
+          <li class="{{#if active.science}}active{{/if}}"><a href="/science">Science</a></li>
+          <li class="{{#if active.technology}}active{{/if}}"><a href="/technology">Technology</a></li>
+          <li class="{{#if active.world}}active{{/if}}"><a href="/world">World</a></li>
+          <li class="{{#if active.trending}}active{{/if}}"><a href="/trending"><span class="red shadow">Trending News</span></a></li>
         </ul>
       </div>
     </div>
